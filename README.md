@@ -1,1 +1,1 @@
-Read me please
+Sample project to test out ASP.NET MVC 
