@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Vidly.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies available currently</h2><br />
+@*<a href="/Movies/New" class="btn btn-primary">Click here to add New Movie</a>*@
+
+<br /><br />
+<table border="1" class="table table-hover" id="movies">
+    <thead>
+    <tr>
+        <th>Movies</th>
+        <th>Genre</th>
+        
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(@movie.Name, "Edit", "Movies", routeValues: new { id = movie.Id }, htmlAttributes: null)</td>
+                <td>@movie.Genre.GenreName</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#movies").DataTable();
+
+
+           
+                
+              @*  $("#movies").on("click", ".js-delete", function () {
+
+                    var currentRow = $(this);
+                    bootbox.confirm("Are you sure you wat to delete this Movie", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: '/api/movies/' + currentRow.data("movie-id"),
+                                method: 'DELETE',
+                                success: function ()
+                                {
+                                    currentRow.parents("tr").remove();
+                                }
+                            });
+                        }
+                        
+                        
+                });
+
+            });*@
+            
+
+        });
+
+
+    </script>
+
+}
